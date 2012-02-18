@@ -1,9 +1,10 @@
 # magenta framework
-
 A PHP5 MVC Framework
 
+
 ## features
-	* MVC
+* MVC
+	
 
 ## requirements
-	* PHP5
+* PHP5
