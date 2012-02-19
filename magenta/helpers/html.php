@@ -1,14 +1,14 @@
 <?php
 /**
- * Magenta, PHP Lightweight and easy to use MVC Framework
+ * Html Helper
  *
- * @version 0.1
- * @package Magenta
- * @author dpStudios Development Team
- * @copyright dpStudios 2009-2011
- * @link http://magenta.dpstudios.es
+ * - create links
+ * - insert images
+ * - load css, js, sass
+ *
+ * @author danybmx <dany@dpstudios.es>
+ * @package helpers
  */
- 
 class Html {
 
 	/**

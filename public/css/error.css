@@ -1,0 +1,9 @@
+body#error { margin: 20px; font: 13px Arial, Verdana; }
+body#error h1 { font-size: 20px; color: #FFF; background-color: #C00; padding: 10px; }
+body#error div.clear { clear: both }
+body#error div.magenta_debug_code { width: 100% }
+body#error div.magenta_debug_code div.header.line, div.magenta_debug_code div.header.code { background-color: #000; color: #FFF; border: 0px; padding: 6px; font-weight: bold; }
+body#error div.magenta_debug_code div.line { width: 50px; float: left; padding: 4px; text-align: center; background-color: #EEE; color: #000; font-weight: bold; border-left: 1px solid #CCC; border-bottom: 1px solid #CCC; border-right: 1px solid #CCC; margin-right: 10px; height: 12px; line-height: 12px }
+body#error div.magenta_debug_code div.rawcode { height: 21px; text-overflow: ellipsis; -o-text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+body#error div.magenta_debug_code div.target { background-color: #FDD; }
+body#error div.magenta_debug_code div.content { line-height: 20px }

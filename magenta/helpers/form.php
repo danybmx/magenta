@@ -1,14 +1,12 @@
 <?php
 /**
- * Magenta, PHP Lightweight and easy to use MVC Framework
+ * Form Helper
  *
- * @version 0.1
- * @package Magenta
- * @author dpStudios Development Team
- * @copyright dpStudios 2009-2011
- * @link http://magenta.dpstudios.es
+ * Make forms, show errors of validation, default data, etc...
+ *
+ * @author danybmx <dany@dpstudios.es>
+ * @package helpers
  */
- 
 class Form {
 	
 	public static function create($name, $action, $options = array())

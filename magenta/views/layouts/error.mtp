@@ -1,0 +1,12 @@
+<!DOCTYPE HTML>
+<html lang="es-es">
+<head>
+	<meta charset="UTF-8">
+	<title>Error #{title} on line {line} on file {file}</title>
+	<link rel="stylesheet" href="{%BASE_PATH}/css/error.css" />
+</head>
+<body id="error">
+<h1>{title} on line {line} on file {file}</h1>
+<div class="file">{file_data}</div>
+</body>
+</html>

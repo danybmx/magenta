@@ -3,7 +3,7 @@
  * Magenta, PHP Lightweight and easy to use MVC Framework
  *
  * @version 0.1
- * @package Magenta
+ * @package magenta
  * @author dpStudios Development Team
  * @copyright dpStudios 2009-2011
  * @link http://magenta.dpstudios.es
@@ -12,7 +12,7 @@
 /**
  * Class for manage, prepare and check if routes match
  */
-class Magenta_Router
+class Router
 {
 	public static function checkIfMatch($route, $url)
 	{

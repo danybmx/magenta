@@ -3,7 +3,7 @@
  * Magenta, PHP Lightweight and easy to use MVC Framework
  * 
  * @version 0.1
- * @package Magenta
+ * @package magenta
  * @author dpStudios Development Team
  * @copyright dpStudios 2009-2011
  * @link http://magenta.dpstudios.es
@@ -39,10 +39,26 @@ require_once CORE.DS.'basics.php';
 require_once CLASSES.DS.'magenta.php';
 
 spl_autoload_register(array('Magenta', 'autoload'));
-set_error_handler(array('Error', 'errorHandler'));
-set_exception_handler(array('Error', 'exceptionHandler'));
 
-/* Define BASE_PATH */
-define('BASE_PATH', Config::load('app.base_path'));
+/**
+ * Launch framework for WEB or CLI
+ */
+if (MAGENTA_TYPE == 'WEB') {
+	/**
+	 * Set error and exception handlers
+	 */
+	set_error_handler(array('Error', 'errorHandler'));
+	set_exception_handler(array('Error', 'exceptionHandler'));
 
-Magenta::run();
+	/**
+	 * Define BASE_PATH
+	 */
+	define('BASE_PATH', Config::load('app.base_path'));
+
+	/**
+	 * Launch the framework
+	 */
+	Magenta::run();
+} else if (MAGENTA_TYPE == 'CLI') {
+
+}

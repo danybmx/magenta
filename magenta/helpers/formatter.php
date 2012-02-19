@@ -1,7 +1,11 @@
 <?php
 /**
- * Created by dpStudios
- * Date: 21/04/11
+ * Formatter Helper
+ *
+ * Formatter for the most used data like currency, time, date...
+ *
+ * @author danybmx <dany@dpstudios.es>
+ * @package helpers
  */
  
 class Formatter
@@ -53,15 +57,6 @@ public static function date($date, $format = 'd/m/Y')
 
 	public static function money($number, $currency = '&euro;', $decimals = 2) {
 		return number_format($number, $decimals, ',', '.').$currency;
-	}
-
-	public static function checkbox($bool)
-	{
-		if ($bool) {
-			return '<div style="background-color: #6F6; width: 16px; height: 16px; margin-top: 2px; margin-bottom: -2px;"></div>';
-		} else {
-			return '<div style="background-color: #F22; width: 16px; height: 16px; margin-top: 2px; margin-bottom: -2px;"></div>';
-		}
 	}
 
 	public static function math($number, $operation)

@@ -3,7 +3,7 @@
  * Magenta, PHP Lightweight and easy to use MVC Framework
  * 
  * @version 0.1
- * @package Magenta
+ * @package magenta
  * @author dpStudios Development Team
  * @copyright dpStudios 2009-2011
  * @link http://magenta.dpstudios.es
@@ -12,7 +12,7 @@
 /**
  * Magenta Core Class
  */
-class Magenta_Core
+class Core
 {
 	/**
 	 * Autoload function for all classes of the framework, including the next folders
@@ -66,6 +66,7 @@ class Magenta_Core
 
 	/**
 	 * Function to launch the webApp
+	 *
 	 * - Check for routes
 	 * - Load Controller
 	 * - Launch Controller Filters

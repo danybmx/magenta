@@ -1,0 +1,10 @@
+<!DOCTYPE HTML>
+<html lang="es-ES">
+<head>
+	<meta charset="UTF-8">
+	<title><?php echo $webtitle; ?> | <?php echo $meta_title; ?></title>
+</head>
+<body>
+	<h1>Hello World!</h1>
+</body>
+</html>
