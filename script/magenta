@@ -1,2 +1,38 @@
 #!/usr/bin/php
+<?php
+/**
+ * define ROOT path
+ */
+define('ROOT', dirname(dirname(__FILE__)));
 
+/**
+ * alias DIRECTORY_SEPARATOR as DS
+ */
+define('DS', DIRECTORY_SEPARATOR);
+
+/**
+ * Get params from shell
+ */
+$params = array_slice($argv, 1);
+
+/**
+ * Require the console class
+ */
+require_once ROOT.DS.'magenta/classes/console.php';
+
+/**
+ * Init console class
+ */
+$con = new Console();
+
+$con->clear();
+$con->box('Magenta');
+
+/**
+ * Check params and run actions
+ */
+if ( ! $params) {
+
+} else {
+
+}
