@@ -1,6 +1,8 @@
 <?php
 /**
+ * Class Core of the active record
  *
+ * Manage instances and set some constants
  *
  * @package ActiveRecord
  * @author danybmx <dany@dpstudios.es>
@@ -14,6 +16,10 @@ class ActiveRecord_Core
 	const FETCH_ONE = 1;
 	const FETCH_ALL = 2;
 
+	/**
+	 * Array of instances
+	 * @var array
+	 */
 	protected static $_instances = array();
 
 	/**

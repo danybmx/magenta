@@ -5,7 +5,7 @@
  * Make forms, show errors of validation, default data, etc...
  *
  * @author danybmx <dany@dpstudios.es>
- * @package helpers
+ * @package Helpers
  */
 class Form {
 	

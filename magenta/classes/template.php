@@ -3,7 +3,7 @@
  * Template Engine Class
  *
  * @author danybmx <dany@dpstudios.es>
- * @package template
+ * @package Template
  */
 class Template {
 	/**

@@ -8,6 +8,9 @@
  * # Or
  * Config::load('app.template.layout');
  * </code>
+ *
+ * @package App
+ * @author danybmx <dany@dpstudios.es>
  */
 
 return array(

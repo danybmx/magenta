@@ -7,7 +7,7 @@
  * - execution of shell commands
  *
  * @author danybmx <dany@dpstudios.es>
- * @package console
+ * @package Console
  */
 class Console
 {

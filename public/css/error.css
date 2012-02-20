@@ -1,5 +1,6 @@
 body#error { margin: 20px; font: 13px Arial, Verdana; }
 body#error h1 { font-size: 20px; color: #FFF; background-color: #C00; padding: 10px; }
+body#error .details {font-weight: normal; padding: 10px; background-color: #FCC; color: #000; font-size: 13px}
 body#error div.clear { clear: both }
 body#error div.magenta_debug_code { width: 100% }
 body#error div.magenta_debug_code div.header.line, div.magenta_debug_code div.header.code { background-color: #000; color: #FFF; border: 0px; padding: 6px; font-weight: bold; }

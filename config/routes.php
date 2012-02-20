@@ -7,6 +7,9 @@
  *
  * We can use (:segment) for get a url segment /segment/
  * We can use (:any) for get all url
+ *
+ * @package App
+ * @author danybmx <dany@dpstudios.es>
  */
 
 return array(

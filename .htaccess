@@ -2,6 +2,7 @@ Options +MultiViews
 <IfModule mod_rewrite.c>
 	RewriteEngine	On
 	#RewriteBase		/
-	RewriteRule		^$		public/index.php	[L]
-	RewriteRule		(.*)	public/$1				[L]
+	RewriteRule		^doc/(.*)$	doc/$1							[L]
+	RewriteRule		^$					public/index.php		[L]
+	RewriteRule		(.*)				public/$1						[L]
 </IfModule>

@@ -1,13 +1,22 @@
 <?php
 /**
+ * Class for manage PDO connections for ActiveRecord
  *
- *
- * @package
+ * @package ActiveRecord
  * @author danybmx <dany@dpstudios.es>
  */
 class ActiveRecord_Connection
 {
+	/**
+	 * Instances of diferent connections
+	 * @var array
+	 */
 	protected static $_instances = array();
+
+	/**
+	 * Options for PDO Object
+	 * @var array
+	 */
 	protected static $_options = array(
 		PDO::ATTR_CASE								=> PDO::CASE_NATURAL,
 		PDO::ATTR_ERRMODE							=> PDO::ERRMODE_EXCEPTION,
@@ -16,6 +25,13 @@ class ActiveRecord_Connection
 		PDO::MYSQL_ATTR_INIT_COMMAND	=> "SET NAMES utf8"
 	);
 
+	/**
+	 * Function for create or get connection
+	 *
+	 * @static
+	 * @param $connection
+	 * @return mixed
+	 */
 	public static function get($connection) {
 		if ( ! array_key_exists($connection, self::$_instances))
 			self::$_instances[$connection] = new self($connection);
@@ -23,8 +39,17 @@ class ActiveRecord_Connection
 		return self::$_instances[$connection];
 	}
 
+	/**
+	 * PDO Object
+	 * @var PDO
+	 */
 	private $_PDO;
 
+	/**
+	 * Function for construct the connection and create the PDO Object
+	 *
+	 * @param $connection
+	 */
 	public function __construct($connection) {
 		$connection_string = Config::load('app.database.'.$connection);
 		if ( ! $connection_string)
@@ -42,6 +67,11 @@ class ActiveRecord_Connection
 		}
 	}
 
+	/**
+	 * Function for get the PDO Object
+	 *
+	 * @return PDO
+	 */
 	public function getPDO() {
 		return $this->_PDO;
 	}

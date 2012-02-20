@@ -5,7 +5,7 @@
  * Formatter for the most used data like currency, time, date...
  *
  * @author danybmx <dany@dpstudios.es>
- * @package helpers
+ * @package Helpers
  */
  
 class Formatter

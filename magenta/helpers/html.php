@@ -7,7 +7,7 @@
  * - load css, js, sass
  *
  * @author danybmx <dany@dpstudios.es>
- * @package helpers
+ * @package Helpers
  */
 class Html {
 

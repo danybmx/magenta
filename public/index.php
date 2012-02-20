@@ -2,7 +2,7 @@
 /**
  * Index file
  *
- * @package magenta
+ * @package Magenta
  * @author danybmx <dany@dpstudios.es>
  */
 
