@@ -18,10 +18,23 @@ class ActiveRecord_Validator
 		$this->_data = $model->toArray();
 	}
 
+	/**
+	 * Validations
+	 *
+	 * 'field' => array('type', array('param1' => 'value1', 'paramN' => 'valueN'));
+	 */
 	public function validate() {
 		foreach ($this->_data as $k => $d) {
 			if (array_key_exists($k, $this->_validations)) {
+				$v = $this->_validations[$k];
+				switch ($v[0]) {
+					case 'custom':
 
+						break;
+					default:
+
+						break;
+				}
 			}
 		}
 	}
