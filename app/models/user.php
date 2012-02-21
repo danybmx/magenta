@@ -18,4 +18,10 @@ class User extends Model
 			)
 		);
 	}
+
+	public function validations() {
+		return array(
+			'name' => array('lenght', array('max' => 20, 'min' => 10))
+		);
+	}
 }
