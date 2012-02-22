@@ -45,8 +45,17 @@ function make_url($url, $get = '')
 	
 	if ($get)
 		$url .= '?'.$get;
-	
+
 	return $url;
+}
+
+function magentaSprintf($string, $params) {
+	$vars = array();
+	preg_match_all('/\:([a-zA-Z0-9]+)/', $string, $vars);
+	foreach ($vars[0] as $k => $v) {
+		$string = str_replace($v, $params[$vars[1][$k]], $string);
+	}
+	return $string;
 }
 
 function redirect($url)

@@ -38,6 +38,12 @@ class ActiveRecord_Model
 	protected $_read_only = false;
 
 	/**
+	 * Array for store errors from validator
+	 * @var array
+	 */
+	protected $_errors = array();
+
+	/**
 	 * Function for create a new instance of the model
 	 *
 	 * @param $model Model name
@@ -129,6 +135,15 @@ class ActiveRecord_Model
 	}
 
 	/**
+	 * Function for get errors on validation
+	 *
+	 * @return array Array with errors
+	 */
+	public function getErrors() {
+		return $this->_errors;
+	}
+
+	/**
 	 * Function for get the fields of the model
 	 *
 	 * @return array Array with fields
@@ -179,6 +194,29 @@ class ActiveRecord_Model
 	 */
 	public function toJson($relations = array()) {
 		return json_encode($this->toArray($relations));
+	}
+
+	/**
+	 * Function for get all data of model
+	 *
+	 * @param array $relations
+	 * @return array all vars of model in array
+	 */
+	public function getData($relations = array()) {
+		$arr = array();
+
+		foreach (get_object_vars($this) as $k => $f) {
+			if (substr($k, 0, 1) == '_') continue;
+			$arr[$k] = $f;
+		}
+
+		if ($relations) {
+			foreach ($relations as $r) {
+				$arr[$r] = $this->$r->toArray();
+			}
+		}
+
+		return $arr;
 	}
 
 	/**
@@ -385,7 +423,11 @@ class ActiveRecord_Model
 		$pk = $this->getPK();
 
 		$this->beforeValidate();
-		#TODO Validation
+		$v = new ActiveRecord_Validator($this);
+		if ( ! $v->validate()) {
+			$this->_errors = $v->getErrors();
+			return false;
+		}
 		$this->afterValidate();
 
 		$this->beforeSave();
