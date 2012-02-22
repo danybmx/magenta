@@ -143,7 +143,7 @@ class Html {
 
 		return $html;
 	}
-	
+
 	/**
 	 * Función para crear un enlace
 	 *
@@ -157,7 +157,7 @@ class Html {
 	{
 		if (array_key_exists('rel', $options))
 			$options['url'] = $url;
-			
+
 		$html = '';
 		$url = make_url($url);
 		$opt = self::_makeOptionsString($options);
