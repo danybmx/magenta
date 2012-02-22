@@ -64,7 +64,29 @@ class Core
 		}
 	}
 
-	/**
+    /**
+     * Function for check needed folders and create it if not exists
+     *
+     * Folders:
+     *
+     * - cache
+     *      - templates
+     *      - sass
+     *
+     * @static
+     * @param array $folders Array with needed folders
+     */
+    public static function checkAndCreateFolders($folders) {
+        foreach ($folders as $p) {
+            if ( ! file_exists(ROOT.DS.$p)) {
+                if ( ! mkdir(ROOT.DS.$p, 0777, true)) {
+                    trigger_error('Do not have permissions to create the required folder '.$p);
+                }
+            }
+        }
+    }
+
+    /**
 	 * Function to launch the webApp
 	 *
 	 * - Check for routes
@@ -75,9 +97,9 @@ class Core
 	 * @static
 	 * @return void
 	 */
-	static function run()
+	public static function run()
 	{
-		Request::create();
+        Request::create();
 
 		$controllerClass = ucfirst(Request::$controller).'Controller';
 		if ( ! class_exists($controllerClass)) {

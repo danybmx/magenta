@@ -55,6 +55,11 @@ if (MAGENTA_TYPE == 'WEB') {
 	 */
 	define('BASE_PATH', Config::load('app.base_path'));
 
+    /**
+     * Check and create needed folders
+     */
+    Magenta::checkAndCreateFolders(array('tmp/cache/templates', 'tmp/cache/sass'));
+
 	/**
 	 * Launch the framework
 	 */

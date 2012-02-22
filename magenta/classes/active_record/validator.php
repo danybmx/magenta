@@ -9,6 +9,7 @@ class ActiveRecord_Validator
 {
 	protected $_model;
 	protected $_validations;
+    protected $_operation;
 	protected $_data = array();
 	protected $_errors = array();
 
@@ -16,6 +17,11 @@ class ActiveRecord_Validator
 		$this->_model = $model;
 		$this->_validations = $model->validations();
 		$this->_data = $model->toArray();
+        $pk = $model->getPK();
+        if ($model->$pk)
+            $this->_operation = ActiveRecord::UPDATE;
+        else
+            $this->_operation = ActiveRecord::INSERT;
 	}
 
 	/**

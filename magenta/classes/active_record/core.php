@@ -16,6 +16,9 @@ class ActiveRecord_Core
 	const FETCH_ONE = 1;
 	const FETCH_ALL = 2;
 
+    const INSERT = 1;
+    const UPDATE = 2;
+
 	/**
 	 * Array of instances
 	 * @var array
