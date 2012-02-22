@@ -426,6 +426,7 @@ class ActiveRecord_Model
 		$v = new ActiveRecord_Validator($this);
 		if ( ! $v->validate()) {
 			$this->_errors = $v->getErrors();
+			Error::reportFormErrors($this->_errors);
 			return false;
 		}
 		$this->afterValidate();

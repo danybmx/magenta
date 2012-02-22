@@ -104,4 +104,14 @@ class Error {
 		$_SESSION['error'] = array('message' => $message, 'type' => $type, 'wait' => $wait);
 		redirect($url);
 	}
+
+	public static function reportFormErrors($errors) {
+		self::$_form_errors = $errors;
+	}
+
+	public static function getFormError($field) {
+		if (array_key_exists($field, self::$_form_errors)) {
+			return self::$_form_errors[$field];
+		}
+	}
 }

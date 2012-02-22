@@ -19,10 +19,6 @@ function d($var) {
 	echo '</pre>';
 }
 
-function __($var) {
-	return $var;
-}
-
 function make_url($url, $get = '')
 {
 	if (is_array($url)) {
@@ -49,7 +45,7 @@ function make_url($url, $get = '')
 	return $url;
 }
 
-function magentaSprintf($string, $params) {
+function __($string, $params) {
 	$vars = array();
 	preg_match_all('/\:([a-zA-Z0-9]+)/', $string, $vars);
 	foreach ($vars[0] as $k => $v) {

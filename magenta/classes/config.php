@@ -41,8 +41,22 @@ class Config
 		return $class->getValue($string);
 	}
 
+	/**
+	 * Config filename
+	 * @var string
+	 */
 	private $file = null;
+
+	/**
+	 * Data from config file
+	 * @var array
+	 */
 	private $data = array();
+
+	/**
+	 * Function for construct the instance al load the data from config file
+	 * @param $file
+	 */
 	public function __construct($file)
 	{
 		$this->file = $file;
@@ -51,6 +65,12 @@ class Config
 		$this->data = include(CONFIG.DS.$file.'.php');
 	}
 
+	/**
+	 * Function for get value for a config key
+	 *
+	 * @param $string
+	 * @return array|bool|mixed
+	 */
 	public function getValue($string)
 	{
 		$tree = explode('.', $string);
