@@ -196,6 +196,8 @@
 					} else if (this.type == 'decimal') {
 						this.render = dg.renderers.decimal;
 						this.css.textAlign = 'right';
+					} else if (this.type == 'date') {
+						this.render = dg.renderers.date;
 					}
 				}
 				
@@ -301,6 +303,9 @@
 			},
 			currency: function(data, key, sign) {
 				return magenta.formaters.currency(data[key], sign);
+			},
+			date: function(data, key) {
+				return magenta.formaters.date(data[key]);
 			}
 		};
 

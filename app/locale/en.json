@@ -1,0 +1,12 @@
+{
+	"DateFormat": "Y/m/d",
+	"DateTimeFormat": "Y/m/d H:i",
+	"Welcome :user": "Bienvenido :user",
+	"You are logged off": "Te has desconectado",
+	"Do not have enough permissions": "No tienes permisos suficientes",
+	"Are you sure?": "¿Estás seguro/a?",
+	"Edit": "Editar",
+	"Delete": "Borrar",
+	"Accept": "Aceptar",
+	"Cancel": "Cancelar"
+}

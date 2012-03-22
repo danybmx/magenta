@@ -23,6 +23,10 @@
 	</div>
 	<div id="main_page" class="page">
 		<div id="toolbar">
+			<div class="item" link="admin/posts">
+				<div class="icon"><?php echo Html::image('icons/posts.png') ?></div>
+				<div class="text">_{'Posts'}</div>
+			</div>
 			<div class="item right" link="admin/logout">
 				<div class="icon"><?php echo Html::image('icons/lock.png') ?></div>
 				<div class="text">_{'Salir'}</div>

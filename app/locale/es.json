@@ -1,10 +1,30 @@
 {
+	"Posts": "Entradas",
+	
+	"January": "Enero",
+	"February": "Febrero",
+	"March": "Marzo",
+	"April": "Abril",
+	"May": "Mayo",
+	"June": "Junio",
+	"July": "Julio",
+	"August": "Agosto",
+	"September": "Septiembre",
+	"October": "Octubre",
+	"November": "Noviembre",
+	"December": "Diciembre",
+	
+	"DateFormat": "d/m/Y",
+	"DateTimeFormat": "d/m/Y H:i",
 	"Welcome :user": "Bienvenido :user",
 	"You are logged off": "Te has desconectado",
 	"Do not have enough permissions": "No tienes permisos suficientes",
 	"Are you sure?": "¿Estás seguro/a?",
+	"New": "Nuevo",
 	"Edit": "Editar",
+	"Editing": "Editando",
 	"Delete": "Borrar",
+	"Save": "Guardar",
 	"Accept": "Aceptar",
 	"Cancel": "Cancelar"
 }

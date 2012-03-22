@@ -250,6 +250,9 @@ EOF;
 						case 'text':
 							$admin_form_fields .= "<?php echo Form::input('{$f}', array('label' => __('".Inflector::titleize($f)."'), 'type' => 'textarea')); ?>\r\n";
 							break;
+							
+						case 'pk':
+							break;
 
                         default:
                             $admin_form_fields .= "<?php echo Form::input('{$f}', array('label' => __('".Inflector::titleize($f)."'))); ?>\r\n";

@@ -41,6 +41,7 @@ class Console_Utilities
 					$connection_url = parse_url($connection);
 					$database = substr($connection_url['path'], 1);
 					ActiveRecord::query('CREATE DATABASE '.$database, array(), str_replace('/'.$database, '', $connection), true);
+					self::$_con->write('Database '.$database.' created');
 				break;
 				
 			case 'create_rols_and_owner':
