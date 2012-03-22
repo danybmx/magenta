@@ -4,8 +4,21 @@
 	<meta charset="UTF-8">
 	<base href="{%BASE_PATH}/" />
 	<title>{webtitle} | {meta_title}</title>
+	<?php echo Html::css('reset', '960_24_col') ?>
+	<?php echo Html::sass('main') ?>
 </head>
 <body>
-	{content_for_layout}
+	<div class="container_24">
+		<div class="grid_24">
+			<div id="header">
+				<h1>{webtitle}</h1>
+			</div>
+		</div>
+		<div class="grid_24">
+			<div id="content">
+				{content_for_layout}
+			</div>
+		</div>
+	</div>
 </body>
 </html>
