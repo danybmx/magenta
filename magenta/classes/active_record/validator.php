@@ -181,6 +181,11 @@ class ActiveRecord_Validator
 				return false;
 		}
 
+		if (array_key_exists('unique', $params) && $params['unique'] == true) {
+			if ( ! $this->unique($field, array()));
+				return false;
+		}
+
 		if (array_key_exists('max', $params) && array_key_exists('min', $params))
 			$type = 'between';
 		else
@@ -226,6 +231,11 @@ class ActiveRecord_Validator
 
 		if (array_key_exists('confirm', $params) && $params['confirm'] == true) {
 			if ( ! $this->confirm($field, array('field' => array_key_exists('confirm_field', $params) ? $params['confirm_field'] : $field.'_confirm')))
+				return false;
+		}
+
+		if (array_key_exists('unique', $params) && $params['unique'] == true) {
+			if ( ! $this->unique($field, array()));
 				return false;
 		}
 
@@ -282,6 +292,11 @@ class ActiveRecord_Validator
 				return false;
 		}
 
+		if (array_key_exists('unique', $params) && $params['unique'] == true) {
+			if ( ! $this->unique($field, array()));
+				return false;
+		}
+
 		if ( ! @preg_match($params['pattern'], $data)) {
 			$message = array_key_exists('message', $params) ? $params['message'] : $this->_default_messages['regexp'];
 			$this->addError($field, $message, $params);
@@ -332,6 +347,11 @@ class ActiveRecord_Validator
 		if (array_key_exists('allow_empty', $params) && $params['allow_empty'] == true)
 			if( ! $data) return true;
 
+		if (array_key_exists('unique', $params) && $params['unique'] == true) {
+			if ( ! $this->unique($field, array()));
+				return false;
+		}
+
 		$confirm_field = array_key_exists('field', $params) ? $params['field'] : $field.'_confirm';
 
 		if ($data != $this->_data[$confirm_field]) {
@@ -347,7 +367,7 @@ class ActiveRecord_Validator
 	 * Function for check if the field value is unique
 	 *
 	 * @param $field
-	 * @param $params (allow_empty, confirm, confirm_field, message)
+	 * @param $params
 	 * @return bool
 	 */
 	public function unique($field, $params) {

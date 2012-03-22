@@ -17,8 +17,7 @@ class Form {
 			'method' => 'post',
 			'enctype' => 'multipart/form-data',
 			'ajax' => false,
-			'container' => null,
-			'autocomplete' => 'off'
+			'container' => null
 			);
 
 		$options = array_merge($default_options, $options);
@@ -86,7 +85,8 @@ class Form {
 			'default' => false,
 			'label' => false,
 			'clear' => true,
-			'style' => false
+			'style' => false,
+			'errors' => true
 			);
 
 		/** Allowed options for input tag **/
@@ -99,8 +99,18 @@ class Form {
 		$options['value'] = $options['value'] ? $options['value'] : self::getData($name);
 		$options['value'] = $options['value'] !== null ? $options['value'] : $options['default'];
 
+		$error = false;
+		$error_class = '';
+		if ($options['errors'] == true) {
+			$error = Error::getFormError($name);
+			if ($error) {
+				$error_class = ' error';
+				$options['class'] .= $error_class;
+			}
+		}
+
 		if ($options['div'] == true)
-			$html .= '<div class="magenta-input '.$options['type'].''.($options['div_class'] ? ' '.$options['div_class'] : '').'">';
+			$html .= '<div class="magenta-input '.$options['type'].''.($options['div_class'] ? ' '.$options['div_class'] : '').$error_class.'">';
 
 		if ($options['default'] && $options['value'] == null) $options['value'] = $options['default'];
 
@@ -109,6 +119,9 @@ class Form {
 
 		if ($options['type'] == 'password')
 			$options['value'] = '';
+
+		if ($options['type'] == 'file')
+			$options['name'] = preg_replace('/data\[(.*)\]/', '\\1', $options['name']);
 
 		switch ($options['type']) {
 			case 'textarea': # textarea
@@ -123,14 +136,13 @@ class Form {
 				$html .= '<input'.self::_makeOptionsString(array_merge($options, array('value' => 1)), $inputOptions).' />';
 				break;
 
-			case 'radio': # radio
-				$html .= '<input'.self::_makeOptionsString($options, $inputOptions).' />';
-				break;
-
 			default: # text
 				$html .= '<input'.self::_makeOptionsString($options, $inputOptions).' />';
 				break;
 		}
+
+		if ($error)
+			$html .= '<div class="error">'.$error.'</div>';
 
 		if ($options['comment'])
 			$html .= '<div class="magenta-comment '.$options['comment_class'].'">'.$options['comment'].'</div>';
@@ -160,7 +172,8 @@ class Form {
 			'comment_class' => 'form-comment',
 			'default' => false,
 			'label' => false,
-			'clear' => true
+			'clear' => true,
+			'errors' => true
 			);
 
 		/** Allowed options for input tag **/
@@ -169,12 +182,22 @@ class Form {
 		/** Getting all options **/
 		$options = array_merge($defaultOptions, $options);
 
+		$error = false;
+		$error_class = '';
+		if ($options['errors'] == true) {
+			$error = Error::getFormError($name);
+			if ($error) {
+ 				$error_class = ' error';
+				$options['class'] .= $error_class;
+			}
+		}
+
 		/** Value **/
 		$options['value'] = $options['value'] ? $options['value'] : self::getData($name);
 		$options['value'] = $options['value'] ? $options['value'] : $options['default'];
 
 		if ($options['div'] == true)
-			$html .= '<div class="magenta-input combo'.($options['div_class'] ? ' '.$options['div_class'] : '').'">';
+			$html .= '<div class="magenta-input combo'.($options['div_class'] ? ' '.$options['div_class'] : '').$error_class.'">';
 
 		if ($options['default'] && ! $options['value']) $options['value'] = $options['default'];
 
@@ -187,6 +210,9 @@ class Form {
 			$html .= '<option value="'.$key.'"'.$selected.'>'.$value.'</option>';
 		}
 		$html .= '</select>';
+
+		if ($error)
+			$html .= '<div class="error">'.$error.'</div>';
 
 		if ($options['div'] == true) {
 			if ($options['clear'] == true)

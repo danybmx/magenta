@@ -129,4 +129,15 @@ class Console
 			echo "\n";
 		}
 	}
+
+	/**
+	 * Function for show Help Box
+	 */
+	public static function help() {
+		global $con;
+		$con->write('Utilities: script/magenta u');
+		$con->write('Generator: script/magenta g');
+		$con->write('Migrate: script/magenta m sql_file');
+		$con->write('Crud: script/magenta crud model');
+	}
 }

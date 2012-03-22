@@ -16,9 +16,12 @@
 return array(
 	'base_path' => 'http://localhost/magenta', // base_url of website
 	'webtitle' => 'Magenta', // title of website
-	'meta_title' => 'Framework', // default meta_title
+	'meta_title' => 'PHP5 Framework', // default meta_title
 	'meta_description' => '', // default meta_description
 	'meta_tags' => '', // default meta_tags
+	'environment' => 'development', // development||production
+	'locale' => 'es',
+	'page_items' => 20,
 	'template' => array(
 		'layout' => 'application', // default layout for app
 		'cache' => false, // cache database fields and template files
@@ -32,7 +35,7 @@ return array(
 	'database' => array(
 		'charset' => 'utf8',
 		'connection' => 'development', // using development connection by default
-		'development' => 'mysql://root@localhost/flybikesManagement',
+		'development' => 'mysql://root@localhost/test',
 		#'production' => 'mysql://user:pwd@host/database'
 	)
 );

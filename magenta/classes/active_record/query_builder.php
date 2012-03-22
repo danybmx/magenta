@@ -28,6 +28,7 @@ class ActiveRecord_QueryBuilder
 		'params' => array(),
 		'order' => null,
 		'limit' => null,
+		'page' => null,
 		'offset' => null,
 		'select' => null,
 		'fetch' => ActiveRecord::FETCH_ALL
@@ -120,6 +121,11 @@ class ActiveRecord_QueryBuilder
 
 		if ($options['order'])
 			$sql .= " ORDER BY {$options['order']}";
+
+		if ($options['page']) {
+			if ( ! $options['limit']) $options['limit'] = Config::load('app.page_items');
+			$options['offset'] = ($options['page'] - 1) * $options['limit'];
+		}
 
 		if ($options['limit']) {
 			$sql .= " LIMIT {$options['limit']}";

@@ -2,6 +2,7 @@
 <html lang="es-ES">
 <head>
 	<meta charset="UTF-8">
+	<base href="{%BASE_PATH}/" />
 	<title>{webtitle} | {meta_title}</title>
 </head>
 <body>

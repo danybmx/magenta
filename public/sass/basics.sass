@@ -1,0 +1,63 @@
+@mixin nofocused
+	outline: none
+
+@mixin selectable
+	-webkit-user-select: text;
+	-khtml-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	-o-user-select: text;
+	user-select: text;
+
+@mixin noselectable
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+
+@mixin inlineblock
+	display: -moz-inline-stack;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+
+@mixin gradient($first, $second)
+	background-color: $first
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$first, endColorstr=$second)
+	background: -webkit-gradient(linear, left top, left bottom, from($first), to($second))
+	background: -moz-linear-gradient(top,  $first,  $second)
+
+@mixin rounded($radius: 6px)
+	border-radius: $radius
+	-moz-border-radius: $radius
+	-webkit-border-radius: $radius
+
+@mixin opacity($op: 0)
+	$ieop = $op * 100
+	opacity: $op
+	-ms-filter: "alpha(opacity=$ieop)"
+	-khtml-opacity: $op
+	-webkit-opacity: $op
+	-moz-opacity: $op
+
+@mixin font-face($name, $file, $path: '../fonts')
+	#{@font-face}
+		$pathAndFile: $path+'/'+$file
+		font-family: quote($name)
+		src: url($pathAndFile + '.eot')
+		src: url($pathAndFile + '.eot?#iefix') format('embedded-opentype'), url($pathAndFile + '.woff') format('woff'), url($pathAndFile + '.ttf') format('truetype'), url($pathAndFile + '.svg') format('svg')
+		font-weight: normal
+		font-style: normal
+
+@mixin image($file, $repeat: repeat, $x: center, $y: center, $ext: 'png')
+	$image = $file+'.'+$ext
+	background-image: url('../img/'+$image)
+	background-repeat: $repeat
+	background-position: $x $y
+
+@mixin shadow($color, $blur: 6px, $x: 0, $y: 0)
+	-moz-box-shadow: $x $y $blur $color
+	-webkit-box-shadow: $x $y $blur $color
+	box-shadow: $x $y $blur $color

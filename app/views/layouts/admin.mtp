@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="es-ES">
+<head>
+	<meta charset="UTF-8">
+	<title>{webtitle} | {meta_title}</title>
+	<meta name="description" content="{meta_description}">
+	<meta name="keywords" content="{meta_tags}">
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<base href="{%BASE_PATH}/">
+	<?php echo Html::js('jquery-1.7.1', 'magenta', 'magenta.datagrid') ?>
+	<?php echo Html::sass('magenta', 'backend') ?>
+	<?php echo Html::css('jquery-ui/jquery-ui-1.8.18') ?>
+	<script type="text/javascript">
+		$(window).load(function(){
+			$('#main-loader').hide();
+		})
+	</script>
+	<?php echo Translate::JSi18n() ?>
+</head>
+<body>
+	<div id="main-loader">
+		<div class="loader"></div>
+	</div>
+	<div id="main_page" class="page">
+		<div id="toolbar">
+			<div class="item right" link="admin/logout">
+				<div class="icon"><?php echo Html::image('icons/lock.png') ?></div>
+				<div class="text">_{'Salir'}</div>
+			</div>
+		</div>
+		<div id="content">
+			{display_errors}
+			{content_for_layout}
+		</div>
+	</div>
+	</body>
+</html>
+
+<script type="text/javascript" charset="utf-8">
+	$('.item').mouseenter(function(){
+		$(this).addClass('over');
+	}).mouseleave(function(){
+		$(this).removeClass('over');
+	}).click(function(){
+		//var conf = changes ? confirm('Are you sure?') : true;
+		if ($(this).attr('disabled')) {
+			alert('This option is disabled for now');
+			return false;
+		}
+		var conf = true;
+		if (conf)
+				location.href = $(this).attr('link');
+	});
+	
+	$('div [link="admin/<?php echo Request::$controller ?>"]').addClass('active');
+</script>

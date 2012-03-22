@@ -1,0 +1,292 @@
+@import basics
+
+html
+	height: 100%
+
+html, body, input, textarea, *
+	font-family: 'Helvetica Neue', Arial
+
+body
+	height: 100%
+	min-width: 960px
+	margin: 0px
+	font-size: 11px
+	+image('admin/bg')
+
+div#main-loader
+	background-color: #FFF
+	+image('admin/bg')
+	position: fixed
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	z-index: 101
+	height: 100%
+	width: 100%
+
+	div.loader
+		width: 100%
+		height: 100%
+		+image('big-loader', no-repeat, center, center, 'gif')
+	
+div#toolbar
+	top: 0px
+	z-index: 99
+	position: fixed
+	+noselectable
+	+gradient(#FFF, #DDD)
+	+shadow(#AAA)
+	width: 100%
+	height: 80px
+	border-bottom: 1px solid #EEE
+	
+	div.item
+		padding: 2px
+		margin: 4px
+		width: 86px
+		height: 68px
+		float: left
+		cursor: pointer
+		+rounded(6px)
+		cursor: pointer
+		
+		div.icon
+			height: 50px
+			width: 50px
+			text-align: center
+			margin: 0px auto
+		
+		div.text
+			font-weight: bold
+			text-align: center
+			text-shadow: 0 -1px #EEE
+		
+		&.right
+			float: right
+		
+		&.over, &.active
+			+gradient(#CCC, #AAA)
+			
+			div.icon
+
+			div.text
+				color: #FFF
+				text-shadow: 0 1px #999
+
+div#content
+	padding-top: 98px
+	padding-bottom: 40px
+
+div.pane
+	width: 920px
+	margin: 10px auto
+	padding: 10px
+	
+	&.white
+		background-color: #FFF
+
+	&.rounded
+		+rounded(6px)
+	
+	&.bordered
+		border: 1px solid #CCC
+		+shadow(#CCC)
+		
+	h2
+		+noselectable
+		border-bottom: 2px solid #EEE
+		margin: 0 0 10px
+		color: #222
+		font-size: 24px
+		
+	h3
+		+noselectable
+		margin: 10px 0
+		padding: 0 6px
+		border-left: 4px solid #EEE
+		color: #222
+		font-size: 18px
+
+div.sep
+	margin: 12px 0 10px
+	height: 2px
+	background-color: #EEE
+
+div.autocompleter
+	display: none
+	background-color: #FFF
+	position: absolute
+	width: 320px
+	margin: 2px
+	padding: 4px
+	+rounded(4px)
+	+shadow(#AAA)
+	
+	div.item
+		padding: 4px
+		cursor: pointer
+		
+		&.even
+			background-color: #F8F8F8
+			
+		&.odd
+			background-color: #F3F3F3
+			
+		&.selected
+			color: #FFF
+			+gradient(#2E3297, #2E3279)
+			
+		span.code
+			display: block
+			float: right
+			font-weight: bold
+			margin-right: 6px
+			
+		span.master_carton
+			display: block
+			float: right
+			font-weight: bold
+			padding: 0 0 0 4px
+			border-left: 1px solid #EEE
+
+div#aC
+	padding-top: 6px
+
+div#total
+	float: right
+	padding: 6px
+	
+	.text
+		color: #F22
+		font-size: 18px
+		font-weight: bold
+
+div#overlay
+	top: 0px
+	bottom: 0px
+	left: 0px
+	right: 0px
+	position: fixed
+	height: 100%
+	width: 100%
+	background-color: #000
+	+opacity(0.6)
+	z-index: 100
+	display: none
+
+div#createReference
+	display: none
+	+shadow(#AAA)
+	+rounded(6px)
+	padding: 10px
+	width: 370px
+	height: 44px
+	background-color: #FFFFFF
+	position: fixed
+	top: 50%
+	left: 50%
+	margin-top: -30px
+	margin-left: -200px
+	z-index: 101
+
+	div.ok
+		margin-left: 4px
+
+	div.ok, div.cancel
+		cursor: pointer
+		width: 48px
+		height: 48px
+		margin-top: -4px
+
+div#map
+	width: 914px
+	height: 540px
+	margin: 10px 2px 4px
+
+.right
+	float: right
+
+.left
+	float: left
+
+.fw
+	width: 906px
+
+div.pictogram
+	float: left
+	background-color: #AAA
+	+rounded(3px)
+	height: 24px
+	width: 24px
+	padding: 2px
+	margin: 2px
+	cursor: pointer
+
+	&.over
+		background-color: #777
+
+	&.checked
+		background-color: #000
+
+div#images
+	margin-top: 10px
+
+	div.image
+		cursor: pointer
+		width: 170px
+		height: 114px
+		margin: 0 3px 3px
+		float: left
+		padding: 4px
+		background-color: #EEE
+
+		&.selected
+			background-color: #AC0583
+
+		img.image
+			width: 168px
+			height: 112px
+			border: 1px solid #FFF
+
+div#imageOptions
+	margin: 6px 2px
+	display: none
+
+div#imageLoader
+	position: fixed
+	top: 50%
+	left: 50%
+	height: 128px
+	width: 128px
+	margin-left: -64px;
+	margin-top: -64px;
+	z-index: 101
+	+image('big-loader-dark', no-repeat, center, center, 'gif')
+	display: none
+
+iframe#hidden_uploader
+	display: none
+
+div#imageForm
+	position: fixed
+	top: 50%
+	left: 50%
+	+rounded(6px)
+	+shadow(#444)
+	background-color: #FFF
+	width: 400px
+	min-height: 120px
+	margin-left: -210px
+	z-index: 101
+	padding: 10px
+	display: none
+
+	div.close
+		position: absolute
+		cursor: pointer
+		left: -10px
+		top: -10px
+		width: 24px
+		height: 24px
+		+image('close')

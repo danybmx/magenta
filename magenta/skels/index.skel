@@ -1,0 +1,10 @@
+<h2>{:names}</h2>
+
+<div id="{:plural}" class="magenta-collection">
+<?php foreach (${:plural} as ${:singular}): ?>
+	<div class="magenta-item {:singular}">
+	{:fields}
+	<div class="clear"></div>
+	</div>
+<?php endforeach ?>
+</div>

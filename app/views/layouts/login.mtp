@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html lang="es-ES">
+<head>
+	<meta charset="UTF-8">
+	<title>{meta_title} | {webtitle}</title>
+	<meta name="description" content="{meta_description}">
+	<meta name="keywords" content="{meta_tags}">
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<base href="{%BASE_PATH}/">
+	<?php echo Html::sass('magenta', 'backend', 'login'); ?>
+	<?php echo Html::js('jquery-1.7.1', 'magenta'); ?>
+</head>
+	<body>
+	{display_errors}
+	{content_for_layout}
+	</body>
+</html>

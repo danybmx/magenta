@@ -20,9 +20,13 @@ class Data
 		self::$data[$key] = $data;
 	}
 	
-	public static function get($key) {
+	public static function get($key, $sub = null) {
 		if (array_key_exists($key, self::$data))
-			return self::$data[$key];
+			if ($sub) {
+				if (array_key_exists($sub, self::$data[$key]))
+					return self::$data[$key][$sub];
+			} else
+				return self::$data[$key];
 			
 		return array();
 	}

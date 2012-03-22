@@ -1,0 +1,10 @@
+<?php
+/**
+ * Class for {:name} Controller
+ *
+ * @package App
+ * @author danybmx <dany@dpstudios.es>
+ */
+class {:name}Controller extends Controller
+{
+{:functions}}

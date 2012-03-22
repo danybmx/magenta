@@ -77,13 +77,16 @@ class Core
      * @param array $folders Array with needed folders
      */
     public static function checkAndCreateFolders($folders) {
+		$oldumask = umask(0);
         foreach ($folders as $p) {
             if ( ! file_exists(ROOT.DS.$p)) {
                 if ( ! mkdir(ROOT.DS.$p, 0777, true)) {
+					shell_exec('chmod -R a+rw '.ROOT.DS.$p);
                     trigger_error('Do not have permissions to create the required folder '.$p);
                 }
             }
         }
+		umask($oldumask);
     }
 
     /**
@@ -99,8 +102,13 @@ class Core
 	 */
 	public static function run()
 	{
-        Request::create();
+    	Request::create();
 
+		if (Request::$admin)
+			session_name('backend');
+		else
+			session_name('frontend');
+			
 		$controllerClass = ucfirst(Request::$controller).'Controller';
 		if ( ! class_exists($controllerClass)) {
 			header('Status: 404 Not Found');

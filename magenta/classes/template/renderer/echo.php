@@ -28,7 +28,7 @@ class Template_Renderer_Echo implements Template_RendererInterface
 		$matches = array();
 		$tmp = $this->content;
 
-		preg_match_all('/\{([%a-zA-Z0-9\.\-\_]*?)\}/', $tmp, $matches);
+		preg_match_all('/\{([%a-zA-Z0-9\.\-\_]{1,255}?)\}/', $tmp, $matches);
 		foreach ($matches[0] as $k => $m) {
 			if (strpos($matches[1][$k], '.') === 0) {
 				$string = '\'.###VAR###'.substr($matches[1][$k], 1).'###VAR###.\'';

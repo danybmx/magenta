@@ -1,0 +1,24 @@
+<div id="login-pane">
+	<?php echo Form::create('Login', $current_url); ?>
+	<?php echo Form::input('username', array('placeholder' => 'Usuario')); ?>
+	<?php echo Form::input('password', array('placeholder' => 'Contraseña', 'type' => 'password')); ?>
+	<div id="button">
+		<?php echo Form::end('Acceder', array('class' => 'magenta-button')); ?>
+	</div>
+</div>
+
+<script type="text/javascript">
+	if ($('.magenta-error.warning').length > 0) {
+		$('#login-pane').animate({
+			left: '49%'
+		}, 100).animate({
+			left: '51%'
+		}, 100).animate({
+			left: '49%'
+		}, 100).animate({
+			left: '51%'
+		}, 100).animate({
+			left: '50%'
+		}, 100)
+	}
+</script>

@@ -23,11 +23,6 @@ define('ROOT', dirname(dirname(__FILE__)));
 define('DS', DIRECTORY_SEPARATOR);
 
 /**
- * Set default timezone
- */
-date_default_timezone_set('Europe/Berlin');
-
-/**
  * Define MAGENTA_TYPE
  */
 define('MAGENTA_TYPE', 'WEB');

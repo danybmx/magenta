@@ -43,6 +43,8 @@ class Request {
 		} else {
 			self::$url = self::$uri;
 		}
+		$_GET = self::$get ? self::$get : array();
+		
 		if ( ! self::$url) self::$url = Config::load('routes.root.controller').'/'.
 																		Config::load('routes.root.action').'/'.
 																		implode('/', Config::load('routes.root.params'));
@@ -78,17 +80,17 @@ class Request {
 			}
 		}
 
-		/**
-		 * Check if is admin
-		 */
-		if (preg_match('/^admin/', self::$route))
-			self::$admin = true;
-
 		$route = explode('/', self::$route);
 		self::$controller = $route[0];
 		array_shift($route);
 		self::$action = count($route) > 0 ? $route[0] : 'index';
 		array_shift($route);
 		self::$params = $route;
+
+		/**
+		 * Check if is admin
+		 */
+		if (self::$controller == 'admin' || preg_match('/admin_(.*)/', self::$action))
+			self::$admin = true;
 	}
 }

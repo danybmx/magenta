@@ -1,0 +1,6 @@
+<h2>{:name}</h2>
+
+<div class="magenta-item" id="{:singular}">
+{:fields}
+<?php echo Html::link('Back', '/{:url}', array('class' => 'featured')) ?>
+</div>

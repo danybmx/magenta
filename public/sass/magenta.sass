@@ -1,0 +1,267 @@
+@import basics
+
+.clear
+	clear: both
+
+div.magenta-error
+	+noselectable
+	+rounded(4px)
+	width: 920px
+	margin: 10px auto
+	padding: 10px
+	font-weight: bold
+	background-color: #FFF
+	border: 1px solid #FFF
+
+	&.notify
+		+image('icons/tick')
+		+gradient(#E5FAD5, #CAF3AA)
+		border-color: #81C24E
+		text-shadow: 0 -1px 0 #E8FFD6
+
+	&.warning
+		+gradient(#FAD5D5, #F3AAAA)
+		border-color: #C24E4E
+		text-shadow: 0 -1px 0 #FFD6D6
+
+div.form-inline
+	div.magenta-input
+		float: left
+
+		&.clear
+			clear: none
+
+div.magenta-tooltip
+	background-color: #000
+	color: #FFF
+	position: absolute
+	padding: 8px
+	z-index: 101
+	margin-left: -6px
+	margin-top: -2px
+	+rounded(4px)
+
+div.magenta-input
+	label
+		+noselectable
+		display: block
+		margin: 4px
+		font-weight: bold
+		font-size: 12px
+
+	input, textarea
+		+gradient(#F8F8F8, #FFF)
+		+rounded(4px)
+		+nofocused
+		padding: 4px
+		font-size: 12px
+		margin: 0 2px
+		color: #444
+		border: 1px solid #CCC
+
+	select
+		+gradient(#F8F8F8, #FFF)
+		+rounded(4px)
+		+nofocused
+		padding: 4px
+		font-size: 12px
+		margin: 0 2px
+		height: 25px
+		color: #444
+		border: 1px solid #CCC
+
+	input[type=checkbox]
+		margin: 0 4px
+
+	div.magenta-comment
+		color: #555
+		padding: 4px
+
+	input.error, textarea.error, select.error
+		border-color: #FAA
+
+	div.error
+		color: #F22
+		font-weight: bold
+		padding: 4px
+
+	input:focus, textarea:focus
+		+gradient(#F4F4F4, #FFF)
+		border-color: #AC0583
+		+shadow(#AC0583, 4px)
+
+		&.error
+			border-color: #F44
+			+shadow(#F44, 4px)
+
+	&.submit, &.button
+		margin-top: 10px
+
+a.magenta-button, input.magenta-button
+	+noselectable
+	+inlineblock
+	+rounded(4px)
+	+gradient(#FAFAFA, #EEE)
+	font-size: 11px !important
+	line-height: 16px !important
+	color: #555
+	font-weight: bold
+	text-shadow: 0 -1px 0 #FFF
+	padding: 4px 8px
+	text-decoration: none
+	border: 1px solid #DFDFDF
+	cursor: pointer
+
+	&.over
+		+gradient(#DDD, #BBB)
+		text-shadow: 0 -1px 0 #999
+		color: #FFF
+		border-color: #AAA
+
+	&.icon
+		padding: 4px 8px 4px 6px
+
+		img.icon
+			height: 10px
+			margin-right: 6px
+			vertical-align: -1px
+
+div.magenta-resizer
+	position: fixed
+	z-index: 101
+	padding: 6px
+	background-color: #FFF
+	+shadow(#222)
+
+	img
+		+noselectable
+
+	div.zone
+		position: absolute
+		cursor: default
+		+noselectable
+		+nofocused
+
+		div.box
+			cursor: pointer
+			background-color: #FFF
+			position: absolute
+			+opacity(0.4)
+			+image('magenta/dark-background-04')
+
+	div.toolbar
+		height: 26px
+		padding-top: 4px
+
+	a
+		margin-right: 4px
+		
+
+table.magenta-datagrid
+	width: 100%
+	margin: 6px 0 0 0
+	border-top: 1px solid #DDD
+	border-left: 1px solid #DDD
+
+	tr
+		th
+			+noselectable
+			+gradient(#FAFAFA, #EEE)
+			font-size: 12px
+			padding: 4px
+			color: #222
+			border-right: 1px solid #DDD
+			border-left: 1px solid #FFF
+			border-bottom: 1px solid #DDD
+			text-shadow: 0 1px 0 #FFF
+
+		td
+			padding: 4px
+			height: 16px
+			color: #444
+			border-right: 1px solid #DDD
+			border-left: 1px solid #FFF
+			border-bottom: 1px solid #DDD
+			cursor: pointer
+
+			&.editing
+				padding: 0px
+
+				img
+					vertical-align: -4px
+
+				input
+					border: 0px
+					margin: 3px
+					height: 17px
+					+nofocused
+
+		&.even
+			td
+				background-color: #FEFEFE
+
+		&.odd
+			td
+				background-color: #FAFAFA
+
+		&.highlight
+			td
+				border-right: 1px solid #777
+				border-left: 1px solid #999
+				border-bottom: 1px solid #999
+				+gradient(#888, #AAA)
+				color: #FFF
+
+		&.selected, &.editing
+			td
+				+gradient(#2E3297, #2E3279)
+				color: #FFF
+				border-right: 1px solid #2E3279
+				border-bottom: 1px solid #2E3279
+				border-left: 1px solid #003690
+
+		&.empty
+			td
+				font-weight: bold
+
+		&.options
+			+noselectable
+
+			td
+				+gradient(#EEE, #DDD)
+				cursor: default !important
+
+				div.action
+					+rounded(4px)
+					+inlineblock
+					+gradient(#FAFAFA, #EEE)
+					color: #555
+					font-weight: bold
+					text-shadow: 0 -1px 0 #FAFAFA
+					padding: 4px 8px
+					line-height: 14px
+					border: 1px solid #DFDFDF
+					margin-right: 2px
+					cursor: pointer
+
+					img
+						height: 10px
+
+					&.disabled
+						+gradient(#EEE, #DDD)
+						cursor: default
+						color: #888
+						text-shadow: 0 -1px 0 #DDD
+
+					&.over
+						+gradient(#DDD, #BBB)
+						text-shadow: 0 -1px 0 #999
+						color: #FFF
+						border-color: #AAA
+
+					&.icon
+						padding: 4px 8px 4px 6px
+
+						img.icon
+							margin: 0 6px 0 0
+							vertical-align: -1px

@@ -1,0 +1,18 @@
+<div class="pane white bordered rounded">
+	<h2>_{'{:title}'}</h2>
+	<?php echo Html::link(__('New').' '.__('{:singular}'), '/admin/{:url}/add', array('class' => 'magenta-button', 'icon' => 'icons/add.png')); ?>
+	<div id="{:plural}"></div>
+</div>
+
+<script type="text/javascript">
+	$('#{:plural}').datagrid({
+		data: <?php echo ${:singular}->toJson(array({:relations})) ?>,
+		fields: [
+			{:fields}
+		],
+		actions: [
+			{name: _('Edit'), icon: 'edit.png', url: 'admin/{:url}/edit/%k', default: true},
+			{name: _('Delete'), icon: 'delete.png', url: 'admin/{:url}/delete/%k', confirm: true, multiple: true}
+		]
+	});
+</script>

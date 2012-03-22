@@ -176,6 +176,9 @@ class ActiveRecord_Model
 	 * @return Model
 	 */
 	public function create($data = array(), $fields = false) {
+		if ( ! $data)
+			return false;
+
 		$this->beforeLoad();
 		foreach ($data as $k => $v) {
 			if (( ! $fields || ($fields && array_key_exists($k, $fields))) && key_exists($k, $this)) {
@@ -260,6 +263,23 @@ class ActiveRecord_Model
 	}
 
 	/**
+	 * Fuction for attach some relations
+	 *
+	 * @param string|array $relation Name/Array of the relation/s
+	 * @return Model
+	 */
+	public function attach($relations) {
+		if ( ! is_array($relations))
+			$relations = array($relations);
+
+		foreach ($relations as $r) {
+			$this->$r;
+		}
+
+		return $this;
+	}
+
+	/**
 	 * Function for load a relation
 	 *
 	 * @param string $relation Name of the relation
@@ -279,7 +299,17 @@ class ActiveRecord_Model
 				$foreign_key = array_key_exists('foreign', $r) ? $r['foreign'] : 'id';
 				$data = ActiveRecord::get($class)->findBy($foreign_key, $this->$local_key, $options);
 			break;
+			case ActiveRecord::RELATION_HASONE:
+				# Fetch Many
+				$local_key = array_key_exists('local', $r) ? $r['local'] : $this->getPK();
+				$foreign_key = array_key_exists('foreign', $r) ? $r['foreign'] : strtolower($this->getName()).'_id';
+				$data = ActiveRecord::get($class)->findBy($foreign_key, $this->$local_key, $options);
+			break;
 			case ActiveRecord::RELATION_HASMANY:
+				# Fetch Many
+				$local_key = array_key_exists('local', $r) ? $r['local'] : $this->getPK();
+				$foreign_key = array_key_exists('foreign', $r) ? $r['foreign'] : strtolower($this->getName()).'_id';
+				$data = ActiveRecord::get($class)->findAllBy($foreign_key, $this->$local_key, $options);
 			break;
 			case ActiveRecord::RELATION_HASMANYANDBELONGSTOMANY:
 			break;
@@ -298,6 +328,9 @@ class ActiveRecord_Model
 	 * @return mixed fetched object/s
 	 */
 	public function find($options = array()) {
+		if (array_key_exists('get', $options) && array_key_exists($options['get'], $_GET))
+			$options = array_merge($options, $_GET[$options['get']]);
+			
 		$qb = new ActiveRecord_QueryBuilder($this);
 		$query = $qb->select($options);
 
@@ -373,9 +406,10 @@ class ActiveRecord_Model
 	 * @param null $field
 	 * @return PDOStatement
 	 */
-	public function delete($value, $cascade = false, $field = null)
+	public function delete($value = null, $cascade = false, $field = null)
 	{
 		$field = $field ? $field : $this->getPK();
+		$value = $value ? $value : $this->$field;
 		$qb = new ActiveRecord_QueryBuilder($this);
 		$query = $qb->delete($field, $value, $cascade);
 		return $this->query($query['sql'], $query['params']);
@@ -410,6 +444,7 @@ class ActiveRecord_Model
 		foreach ($items as $i) {
 			$arr[$i->$key] = $i->$value;
 		}
+		return $arr;
 	}
 
 	/**
@@ -433,7 +468,7 @@ class ActiveRecord_Model
 
 		$this->beforeSave();
 		$qb = new ActiveRecord_QueryBuilder($this);
-		if ($this->$pk == null) {
+		if ($this->$pk == null || ! $this->$pk) {
 			/** INSERT **/
 			if (property_exists($this, 'created_at')) $this->created_at = date('Y-m-d H:i:s', time());
 			$query = $qb->insert();

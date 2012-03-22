@@ -96,12 +96,12 @@ class Error {
 	
 	public static function report($message, $type = 'warning')
 	{
-		Data::set('error', array('message' => $message, 'type' => $type));
+		Data::set('error', array('message' => __($message), 'type' => $type));
 	}
 	
 	public static function flash($url, $message, $type = 'warning', $wait = 1)
 	{
-		$_SESSION['error'] = array('message' => $message, 'type' => $type, 'wait' => $wait);
+		$_SESSION['error'] = array('message' => __($message), 'type' => $type, 'wait' => $wait);
 		redirect($url);
 	}
 
@@ -113,5 +113,9 @@ class Error {
 		if (array_key_exists($field, self::$_form_errors)) {
 			return self::$_form_errors[$field];
 		}
+	}
+
+	public static function getFormErrors() {
+		return self::$_form_errors;
 	}
 }

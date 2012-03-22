@@ -98,6 +98,7 @@ class Template {
 	public function partial($name, $params = array())
 	{
 		$template = new self('partial', Request::$controller.'/_'.$name);
+		$template->setParams($this->vars, true);
 		$template->setParams($params, true);
 		$template->render(true);
 	}

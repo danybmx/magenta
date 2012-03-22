@@ -14,7 +14,7 @@ class Controller
 	protected $layout;
 	protected $view;
 	protected $render;
-	protected $filters;
+	protected $filters = array();
 	protected $data = array();
 	protected $params = array();
 	
@@ -26,17 +26,23 @@ class Controller
 			'meta_description' => Config::load('app.meta_description'),
 			'meta_tags' => Config::load('app.meta_tags')
 		);
-		
-		if ($this->filters) {
-				/* Filter for all */
-				if (array_key_exists('*', $this->filters)) $this->filter($this->filters['*']);
-				
-				/* Filters for admin */
-				if (array_key_exists('#', $this->filters) && Request::$admin) $this->filter($this->filters['#']);
-				
-				/* Filters for single */
-				if (array_key_exists(Request::$action, $this->filters)) $this->filter($this->filters[Request::$action]);
-		}
+
+		$this->filters['#'] = array_merge(array('admin,owner', array(
+					'url' => '/admin/login',
+					'message' => 'Do not have enough permissions',
+					'type' => 'warning',
+					'exclude' => 'login,logout',
+					'no_message' => 'index'
+				)), array_key_exists('#', $this->filters) ? $this->filters['#'] : array());
+
+		/* Filter for all */
+		if (array_key_exists('*', $this->filters)) $this->filter($this->filters['*']);
+
+		/* Filters for admin */
+		if (array_key_exists('#', $this->filters) && Request::$admin) $this->filter($this->filters['#']);
+
+		/* Filters for single */
+		if (array_key_exists(Request::$action, $this->filters)) $this->filter($this->filters[Request::$action]);
 		
 		if ( ! $this->render)
 			$this->render = true;
@@ -66,16 +72,28 @@ class Controller
 			$roles = explode(',', $filter[0]);
 			array_shift($filter);
 			if ($filter) {
+				if (array_key_exists('exclude', $filter[0])) {
+					$excluded = explode(',', $filter[0]['exclude']);
+					if (in_array(Request::$action, $excluded))
+						return true;
+				}
 				$url = array_key_exists('url', $filter[0]) ? $filter[0]['url'] : $url;
 				$message = array_key_exists('message', $filter[0]) ? $filter[0]['message'] : $message;
 				$type = array_key_exists('type', $filter[0]) ? $filter[0]['type'] : $type;
+				if (array_key_exists('no_message', $filter[0]) && in_array(Request::$action, explode(',', $filter[0]['no_message'])))
+					$message = $type = '';
 			}
 		}
 		
 		if ( ! UserComponent::CheckRol($roles)) {
 			$last = urlencode(BASE_PATH.DS.Request::$uri);
 			$url = strpos($url, '?') === false ? $url.'?last='.$last : $url.'&last='.$last;
-			redirect($url);
+			if ( ! $message && ! $type) {
+				redirect($url);
+				return false;
+			}
+
+			Error::flash($url, $message, $type);
 		}
 	}
 	
@@ -88,7 +106,7 @@ class Controller
 	private function _updateDataAndFiles()
 	{
 		$data = $this->data;
-		if (isset($_POST['data'])) {
+		if (isset($_POST['data']) && is_array($_POST['data'])) {
 			$data = array_merge_recursive($data, $_POST['data']);
 			unset($_POST['data']);
 		}

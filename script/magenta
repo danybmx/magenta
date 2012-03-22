@@ -1,9 +1,10 @@
 #!/usr/bin/php
 <?php
+
 /**
- * define ROOT path
+ * define Magenta Type
  */
-define('ROOT', dirname(dirname(__FILE__)));
+define('MAGENTA_TYPE', 'CLI');
 
 /**
  * alias DIRECTORY_SEPARATOR as DS
@@ -11,9 +12,28 @@ define('ROOT', dirname(dirname(__FILE__)));
 define('DS', DIRECTORY_SEPARATOR);
 
 /**
+ * Get working dir
+ */
+define('WORKING_DIR', getcwd());
+
+/**
+ * define ROOT path
+ */
+if (file_exists(WORKING_DIR.DS.'script'.DS.'magenta')) {
+	define('ROOT', WORKING_DIR);
+} else {
+	define('ROOT', dirname(dirname(__FILE__)));
+}
+
+/**
  * Get params from shell
  */
 $params = array_slice($argv, 1);
+
+/**
+ * Require the bootstrap
+ */
+require_once ROOT.DS.'magenta'.DS.'bootstrap.php';
 
 /**
  * Require the console class
@@ -27,12 +47,33 @@ $con = new Console();
 
 $con->clear();
 $con->box('Magenta');
+$con->cr();
 
 /**
  * Check params and run actions
  */
-if ( ! $params) {
+if ($params) {
+	$action = $params[0];
+	array_shift($params);
 
+	switch ($action) {
+		case 'g':
+			Console_Generator::init($params);
+			break;
+		case 'm':
+			Console_Migrate::init($params);
+			break;
+		case 'create':
+			Console_Create::init($params);
+			break;
+		case 'u':
+			Console_Utilities::init($params);
+			break;
+		default:
+			Console::help();
+	}
 } else {
-
+	Console::help();
 }
+
+$con->cr();

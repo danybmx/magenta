@@ -10,7 +10,7 @@
  * @package Helpers
  */
 class Html {
-
+	
 	/**
 	 * Function for create a html link tag and compilate the sass to css if it not was compiled before
 	 *
@@ -26,8 +26,8 @@ class Html {
 			if (preg_match('/^(.*)\.sass$/', $file)) {
 				$file = str_replace('.sass', '', $file);
 			}
-			$css_file = ASSETS.DS.'css'.DS.$file.'.css';
-			$sass_file = ASSETS.DS.'css'.DS.'sass'.DS.$file.'.sass';
+			$css_file = WEBROOT.DS.'sass'.DS.$file.'.css';
+			$sass_file = WEBROOT.DS.'sass'.DS.$file.'.sass';
 
 			$css_time = 0;
 			$sass_time = filemtime($sass_file);
@@ -39,8 +39,8 @@ class Html {
 					$parser = new SassParser(array(
 					'cache' => Config::load('app.sass.cache'),
 					'cache_location' => CACHE.DS.'sass',
-					'css_location' => ASSETS.DS.'css',
-					'load_paths' => array('./', MASSETS.DS.'css'.DS.'sass'),
+					'css_location' => WEBROOT.DS.'sass',
+					'load_paths' => array('./'),
 					'style' => Config::load('app.sass.style')
 					));
 				}
@@ -53,12 +53,12 @@ class Html {
 				}
 			}
 
-			$html .= self::css($file);
+			$html .= self::css('/sass/'.$file);
 		}
 
 		return $html;
 	}
-
+	
 	/**
 	 * Function for create a html stylesheet link tag
 	 *
@@ -76,8 +76,12 @@ class Html {
 			if ( ! preg_match('/^(.*)\.css$/', $file))
 				$file .= '.css';
 
-			if ( ! preg_match('/^(http|https):\/\/(.*)$/', $file))
-				$file = BASE_PATH.'/assets/css/'.$file;
+			if (strpos($file, '/') === 0)
+				$file = BASE_PATH.$file;
+			else {
+				if ( ! preg_match('/^(http|https):\/\/(.*)$/', $file))
+					$file = BASE_PATH.'/css/'.$file;
+			}
 
 			$html .= '<link rel="stylesheet" type="text/css" href="'.$file.'" media="'.$media.'">';
 		}
@@ -95,11 +99,16 @@ class Html {
 		$args = func_get_args();
 		$html = '';
 		foreach ($args as $file) {
-			if ( ! preg_match('/^(.*)\.js$/', $file))
-				$file .= '.js';
+			if ( ! preg_match('/^(http|https):\/\/(.*)$/', $file)) {
+				$file = BASE_PATH.'/js/'.$file;
+				if ( ! preg_match('/^(.*)\.js$/', $file))
+					$file .= '.js';
 
-			if ( ! preg_match('/^(http|https):\/\/(.*)$/', $file))
-				$file = BASE_PATH.'/assets/js/'.$file;
+				if (Config::load('app.environment') == 'production') {
+					if (file_exists(str_replace('.js', '.min.js', $file)));
+						$file = str_replace('.js', '.min.js', $file);
+				}
+			}
 
 			$html .= '<script type="text/javascript" src="'.$file.'"></script>';
 		}
@@ -117,7 +126,7 @@ class Html {
 		$html = '';
 
 		if ( ! preg_match('/^(http|https):/\/\//', $file))
-			$file = BASE_PATH.'/assets/'.$file;
+			$file = BASE_PATH.'/'.$file;
 
 		$html .= '<link rel="icon" href="'.$file.'" type="image/x-icon">';
 		$html .= '<link rel="shortcut icon" href="'.$file.'" type="image/x-icon">';
@@ -136,7 +145,7 @@ class Html {
 	public static function image($src, $options = array()) {
 		$html = '';
 		if ( ! preg_match('/^(http|https):\/\//', $src))
-			$src = BASE_PATH.'/assets/img/'.$src;
+			$src = BASE_PATH.'/img/'.$src;
 
 		$opt = self::_makeOptionsString($options);
 		$html .= '<img src="'.$src.'"'.$opt.' />';

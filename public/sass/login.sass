@@ -1,0 +1,28 @@
+@import basics
+
+body
+	+image('admin/bg')
+
+div#login-pane
+	width: 326px
+	height: 146px
+	position: fixed
+	padding: 10px
+	top: 50%
+	left: 50%
+	margin-left: -150px
+	margin-top: -120px
+	border: 1px solid #CCC
+	background-color: #FFF
+	+rounded(6px)
+	+shadow(#CCC)
+
+	input[type=text], input[type=password]
+		font-size: 30px
+		width: 308px
+		letter-spacing: -2px
+		margin: 4px 4px 10px
+
+	div#button
+		float: right
+		margin: -10px 4px 0 0

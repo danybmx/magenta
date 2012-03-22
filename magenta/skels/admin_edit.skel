@@ -1,0 +1,7 @@
+<div class="pane white bordered rounded">
+	<div class="right">
+		<?php echo Html::link('Cancelar', '/admin/{:url}', array('class' => 'magenta-button', 'icon' => 'icons/cancel.png')); ?>
+	</div>
+	<h2>_{'Editing'} _{'{:name}'}</h2>
+	<?php echo $this->partial('form'); ?>
+</div>

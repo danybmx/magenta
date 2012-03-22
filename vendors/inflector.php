@@ -49,6 +49,7 @@ class Inflector
         $uncountable = array('equipment', 'information', 'rice', 'money', 'species', 'series', 'fish', 'sheep');
 
         $irregular = array(
+				'rol' => 'roles',
         'person' => 'people',
         'man' => 'men',
         'child' => 'children',
@@ -122,6 +123,7 @@ class Inflector
         $uncountable = array('equipment', 'information', 'rice', 'money', 'species', 'series', 'fish', 'sheep');
 
         $irregular = array(
+				'rol' => 'roles',
         'person' => 'people',
         'man' => 'men',
         'child' => 'children',

@@ -84,12 +84,13 @@ class ActiveRecord_Collection implements Iterator, ArrayAccess
 	/**
 	 * Function for export to json the complete collection
 	 *
+	 * @param string $relations for export relations too
 	 * @param string $key for export inside a key
 	 * @return string
 	 */
-	public function toJson($key = null) {
+	public function toJson($relations = null, $key = null) {
 		if ( ! $this->json_string) {
-			if ( ! $this->array_items) $this->toArray();
+			if ( ! $this->array_items) $this->toArray($relations);
 			$this->json_string = $this->array_items;
 		}
 		if ($key)
@@ -103,10 +104,10 @@ class ActiveRecord_Collection implements Iterator, ArrayAccess
 	 *
 	 * @return array
 	 */
-	public function toArray() {
+	public function toArray($relations = array()) {
 		$array_items = array();
 		foreach ($this->items as $k => $i) {
-			$array_items[$k] = $i->toArray();
+			$array_items[$k] = $i->toArray($relations);
 		}
 		$this->array_items = $array_items;
 

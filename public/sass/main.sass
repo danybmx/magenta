@@ -1,0 +1,46 @@
+$magenta=#D500B9
+
+html, body
+	height: 100%
+	font: 13px Georgia, Arial, sans-serif
+
+div#header
+	border-bottom: 1px solid #DDD
+	padding: 12px 0
+	margin-bottom: 10px
+
+div#content
+	a
+		text-decoration: none
+		color: darken($magenta, 20%)
+		
+		&:hover, &:active
+			color: $magenta
+			
+		&.featured
+			font-weight: bold
+			display: block
+			float: left
+			padding: 4px 0
+
+	h2
+		margin-bottom: 12px
+		
+	div.magenta-collection
+		div.magenta-item
+			margin: 0 0 10px
+			
+			span.title
+				font-weight: bold
+			
+			span.content
+				color: #555
+
+div.magenta-item
+	margin: 0 0 10px
+
+	span.title
+		font-weight: bold
+
+	span.content
+		color: #555

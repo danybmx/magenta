@@ -1,0 +1,5 @@
+<?php echo Form::create('{:name}', $current_url); ?>
+<?php echo Form::hidden('id'); ?>
+
+{:fields}
+<?php echo Form::end('Save', array('class' => 'magenta-button', 'icon' => 'icons/save.png')) ?> <!-- SELF I18N -->
