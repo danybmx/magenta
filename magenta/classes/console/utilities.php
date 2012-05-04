@@ -78,6 +78,7 @@ class Console_Utilities
 			case 'set_permissions':
 					self::$_con->execute('chmod -R a+rw '.self::$_base.DS.'tmp');
 					self::$_con->execute('chmod -R a+rw '.self::$_base.DS.'public'.DS.'sass');
+					self::$_con->execute('chmod -R a+rw '.self::$_base.DS.'public'.DS.'img'.DS.'uploads');
 					self::$_con->write('Permissions setted to a+rw on ('.self::$_base.')');
 				break;
 					
