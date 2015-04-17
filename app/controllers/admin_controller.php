@@ -10,6 +10,7 @@ class AdminController extends Controller
 	public function index() {
 	}
 
+	// Just a comment for test
 	public function login() {
 		$this->layout = 'login';
 		if ($this->data) {
